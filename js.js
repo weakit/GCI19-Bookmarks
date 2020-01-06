@@ -161,11 +161,11 @@ function emptyFields() {
 }
 
 function create() {
-    name = $("#name").val();
-    url = $("#url").val();
+    var name = $("#name").val();
+    var url = $("#url").val();
 
     if (name.length == 0)
-        alertEmptyName();
+        name = url;
     if (url.length == 0)
         alertEmptyURL();
 
