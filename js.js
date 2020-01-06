@@ -63,7 +63,7 @@ function getBookmarks() {
 }
 
 function craftBookmark(name, url) {
-    return `<a onclick="link(this);" class="list-group-item list-group-item-action clearfix"><div class="link text-muted"><span class="h5 align-middle text-body">${name}<br/></span><span>${url}</span> </div><span class="buttons align-middle float-right"> <button onclick="remove(this.parentNode.parentNode);" class="btn btn-sm btn-danger">Delete</button></span></a>`;
+    return `<a onclick="open(this);" class="list-group-item list-group-item-action clearfix"><div class="link text-muted"><span class="h5 align-middle text-body">${name}<br/></span><span>${url}</span> </div><span class="buttons align-middle float-right"> <button onclick="remove(this.parentNode.parentNode);" class="btn btn-sm btn-danger">Delete</button></span></a>`;
 }
 
 function updatePage() {
