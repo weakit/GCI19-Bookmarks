@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans|IBM+Plex+Sans+Condensed&display=swap");
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "IBM Plex Sans", "Helvetica",
+    "Arial", sans-serif !important;
+}
+
+#nav {
+  background-color: rgba(52, 58, 64, 0.95) !important;
+}
+
+.h5 {
+  font-family: -apple-system, BlinkMacSystemFont, "IBM Plex Sans", "Helvetica",
+    "Arial", sans-serif !important;
+}
+
+.list-group-item-action {
+  cursor: pointer;
+}
+
+.link {
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  font-family: -apple-system, BlinkMacSystemFont, "IBM Plex Sans Condensed",
+    "Helvetica", "Arial", sans-serif !important;
+}
+
+.list-group-item:hover .buttons {
+  display: block;
+}
+
+.buttons {
+  display: none;
+}
