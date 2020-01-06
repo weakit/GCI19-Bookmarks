@@ -6,6 +6,7 @@ var bookmarks = {
 
 var nameAlertQueued = false;
 var urlAlertQueued = false;
+var emptyNameAlertQueued = false;
 var emptyUrlAlertQueued = false;
 
 
@@ -92,6 +93,20 @@ function remove(tag) {
     updatePage();
 }
 
+function alertEmptyName() {
+    if (!Boolean($("#emptyName").length)) {
+        $("#alerts").html($("#alerts").html() + `<div id="emptyName" class="alert alert-danger" role="alert">There's no name specified for the new bookmark. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>`);
+    }
+    else
+        emptyNameAlertQueued = true;
+    setTimeout(function () {
+        if (emptyNameAlertQueued)
+            emptyNameAlertQueued = false;
+        else
+            $("#emptyName").alert('close');
+    }, 3000);
+}
+
 function alertEmptyURL() {
     if (!Boolean($("#emptyURL").length)) {
         $("#alerts").html($("#alerts").html() + `<div id="emptyURL" class="alert alert-danger" role="alert">There's no URL specified for the new bookmark. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>`);
@@ -151,7 +166,7 @@ function create() {
     url = $("#url").val();
 
     if (name.length == 0)
-        name = url;
+        alertEmptyName();
     if (url.length == 0)
         alertEmptyURL();
 
