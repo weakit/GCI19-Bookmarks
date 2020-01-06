@@ -63,7 +63,7 @@ function getBookmarks() {
 }
 
 function craftBookmark(name, url) {
-    return `<a onclick="link(this);" class="list-group-item list-group-item-action clearfix"><div class="link text-muted"><span class="h5 align-middle text-body">${name}<br/></span><span>${url}</span> </div><span class="buttons align-middle float-right"> <button onclick="remove(this.parentNode.parentNode);" class="btn btn-sm btn-danger">Delete</button></span></a>`;
+    return `<a onclick="open_link(this);" class="list-group-item list-group-item-action clearfix"><div class="link text-muted"><span class="h5 align-middle text-body">${name}<br/></span><span>${url}</span> </div><span class="buttons align-middle float-right"> <button onclick="event.stopPropagation();remove(this.parentNode.parentNode);" class="btn btn-sm btn-danger">Delete</button></span></a>`;
 }
 
 function updatePage() {
@@ -73,23 +73,24 @@ function updatePage() {
     if (html.length == 0)
         html = `<p class="pt-3 lead text-light">No Bookmarks.</p>`;
     $("#bookmarks").html(html);
-    console.log("Updated Page.")
+    console.log("Updated Page.");
 }
 
 function identify(tag) {
-    return $(tag).children().children().html().slice(0, -4)  // dirty, but works
+    return $(tag).children().children().html().slice(0, -4);  // dirty, but works
 }
 
-function open(tag) {
+function open_link(tag) {
     var key = identify(tag);
     window.open(bookmarks[key]);
-    console.log("Opened Link.")
+    console.log("Opened Link.");
 }
 
 function remove(tag) {
     var key = identify(tag);
     tag.parentNode.removeChild(tag);
     removeBookmark(key);
+    updatePage();
 }
 
 function alertEmptyName() {
@@ -161,11 +162,11 @@ function emptyFields() {
 }
 
 function create() {
-    var name = $("#name").val();
-    var url = $("#url").val();
+    name = $("#name").val();
+    url = $("#url").val();
 
     if (name.length == 0)
-        name = url;
+        alertEmptyName();
     if (url.length == 0)
         alertEmptyURL();
 
